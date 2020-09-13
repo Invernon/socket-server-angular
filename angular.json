@@ -69,8 +69,8 @@
           "options": {
             "browserTarget": "socketTest:build",
             "ssl": true,
-            "sslKey": "/ssl/server.key",
-            "sslCert": "/ssl/server.crt"
+            "sslKey": "ssl/privatekey.pem",
+            "sslCert": "ssl/certificate.pem"
           },
           "configurations": {
             "production": {

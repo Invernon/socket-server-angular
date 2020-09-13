@@ -30,7 +30,7 @@ export class WebSocketFinalService {
   }
 
   startConnection(){
-    this.ws = new WebSocket('wss://192.168.0.162:7777/ws');
+    this.ws = new WebSocket('wss://192.168.0.102:7777/ws');
 
     this.ws.onopen = () => {
       /* Join the "room" of canvas 1 */

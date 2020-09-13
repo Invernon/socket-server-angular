@@ -16,9 +16,9 @@ export class WebsocketService {
   constructor() {   }
 
   connect(): Subject<MessageEvent> {
-    // If you aren't familiar with environment variables then
+    // If you aren't familiar with environment variables the
     // you can hard code `environment.ws_url` as `http://localhost:5000`
-    this.socket = io('ws://192.168.0.162:8080/');
+    this.socket = io('ws://192.168.0.102:7777/');
 
     // We define our observable which will observe any incoming messages
     // from our socket.io server.

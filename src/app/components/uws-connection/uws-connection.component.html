@@ -1,0 +1,20 @@
+<mat-form-field>
+    <input matInput placeholder="Your name here" type="text" [(ngModel)]="message" [ngModelOptions]="{updateOn: 'blur'}">
+</mat-form-field>
+
+<button mat-button color='primary' (click)="sendMessage()"> Enviar </button>
+
+<h1> Mensajes del servidor </h1>
+<h5>
+    {{ serverMessages | async }}
+</h5>
+
+
+<button mat-raised-button color='primary' (click)="connect()"> 
+    conectar
+</button>
+<button mat-raised-button color='warn' (click)="disconnect()"> 
+    desconectar
+</button>
+<!-- <input type="file" accept="audio/*" capture="microphone"> -->
+<audio id="player" controls></audio>

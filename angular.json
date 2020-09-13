@@ -31,7 +31,9 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/ws-audio-api/dist/ws-audio-api.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -69,8 +71,8 @@
           "options": {
             "browserTarget": "socketTest:build",
             "ssl": true,
-            "sslKey": "/ssl/server.key",
-            "sslCert": "/ssl/server.crt"
+            "sslKey": "ssl/privatekey.pem",
+            "sslCert": "ssl/cert.pem"
           },
           "configurations": {
             "production": {

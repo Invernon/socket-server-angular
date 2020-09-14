@@ -45,7 +45,7 @@ export class AppComponent implements AfterViewInit {
   msgs = [];
 
   constructor(
-    private webSocket: WebSocketFinalService,
+    // private webSocket: WebSocketFinalService,
     private audioRecordingService: AudioRecorderService,
     private sanitizer: DomSanitizer) {
 

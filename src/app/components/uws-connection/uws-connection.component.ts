@@ -53,7 +53,6 @@ export class UwsConnectionComponent implements OnInit {
   // }
 
   connect() {
-    
     // this._navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(this.handleSuccess).catch(this.didntGetStream);
     this.streamer.start();
   }

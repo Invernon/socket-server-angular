@@ -9,10 +9,11 @@ declare var WSAudioAPI: any;
   styleUrls: ['./uws-connection.component.scss']
 })
 export class UwsConnectionComponent implements OnInit {
+  
   streamer = new WSAudioAPI.Streamer({
     server: {
       host: window.location.hostname, //websockets server addres. In this example - localhost
-      port: 8080 //websockets server port
+      port: 5000 //websockets server port
     }
   });
 
@@ -26,33 +27,38 @@ export class UwsConnectionComponent implements OnInit {
   message = null;
   serverMessages = null;
   _navigator: any;
+  youAreMaster: any;
 
-
-  constructor(private webSocket: WebSocketFinalService) { }
+  // private webSocket: WebSocketFinalService
+  constructor() { 
+    // this.webSocket.startConnection();
+  }
 
   @ViewChild('player') private player: ElementRef;
 
   ngOnInit(): void {
-    this.serverMessages = this.webSocket.serverMessage;
+    // this.serverMessages = this.webSocket.serverMessage;
+    // this.youAreMaster = this.webSocket.master;
     this._navigator = (navigator as any);
 
     console.log(this.streamer);
-
   }
 
+  // requestMaster(){
+  //   this.webSocket.requestMaster();
+  // }
 
-  sendMessage() {
-    this.webSocket.sendMessage(this.message)
-  }
+  // sendMessage() {
+  //   this.webSocket.sendMessage(this.message)
+  // }
 
   connect() {
-    // this.webSocket.startConnection();
-    this._navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(this.handleSuccess).catch(this.didntGetStream);
+    
+    // this._navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(this.handleSuccess).catch(this.didntGetStream);
     this.streamer.start();
   }
 
   disconnect() {
-    this._navigator.mediaDevices.getUserMedia({ audio: false, video: false });
     this.streamer.stop();
     // this.webSocket.closeConnection();
   }

@@ -6,6 +6,7 @@ const MESSAGE_ENUM = Object.freeze({
   CLIENT_CONNECTED: "CLIENT_CONNECTED",
   CLIENT_DISCONNECTED: "CLIENT_DISCONNECTED",
   CLIENT_MESSAGE: "CLIENT_MESSAGE",
+  REQUEST_MASTER: "REQUEST_MASTER",
 })
 
 @Injectable({
@@ -16,10 +17,13 @@ export class WebSocketFinalService {
   ws = null;
 
   serverMessage = new Subject<any>();
+  user: any;
+  master = new Subject<any>();
 
   constructor() {
+    // this.ws = new WebSocket('wss://192.168.0.162:5000/');
+
     // this.ws.binaryType = 'arraybuffer';
-    // this.ws = new WebSocket('wss://192.168.0.162:8080/');
     // this.ws.onopen = () => {
     //   alert("[open] Connection established");
     // };
@@ -44,20 +48,30 @@ export class WebSocketFinalService {
     //       break;
     //     case MESSAGE_ENUM.SELF_CONNECTED:
     //       console.log(`You are connected! Your username is ${msg.body.name}`);
+    //       this.user = msg.body.name;
+    //       break;
+    //     case 'YOU_ARE_MASTER':
+    //       this.master.next(true)
     //       break;
     //     default:
     //       console.log('Unknown message type.');
     //   }
-    //   /* Add this draw to the pending buffer */
-
-    //   // this.ws.send('');
     // };
+
   }
 
   sendMessage(message: string) {
     let msg = {
       type: MESSAGE_ENUM.CLIENT_MESSAGE,
       body: message
+    }
+    this.ws.send( JSON.stringify(msg) );
+  }
+ 
+  requestMaster() {
+    let msg = {
+      type: MESSAGE_ENUM.REQUEST_MASTER,
+      body: this.user
     }
     this.ws.send( JSON.stringify(msg) );
   }

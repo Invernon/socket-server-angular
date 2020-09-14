@@ -19,6 +19,39 @@ export class WebSocketFinalService {
 
   constructor() {
     // this.ws.binaryType = 'arraybuffer';
+    // this.ws = new WebSocket('wss://192.168.0.162:8080/');
+    // this.ws.onopen = () => {
+    //   alert("[open] Connection established");
+    // };
+
+    // this.ws.onerror = function(error) {
+    //   alert(`[error] ${error.message}`);
+    // };
+
+    // this.ws.onmessage = (message) => {
+    //   /* Request a new animation frame on first draw */
+    //   let msg = JSON.parse(message.data);
+    //   switch (msg.type) {
+    //     case MESSAGE_ENUM.CLIENT_MESSAGE:
+    //       console.log(`${msg.sender} says: ${msg.body}`);
+    //       this.serverMessage.next( msg.body );
+    //       break;
+    //     case MESSAGE_ENUM.CLIENT_CONNECTED:
+    //       console.log(`${msg.body.name} has joined the chat.`);
+    //       break;
+    //     case MESSAGE_ENUM.CLIENT_DISCONNECTED:
+    //       console.log(`${msg.body.name} has left the chat.`);
+    //       break;
+    //     case MESSAGE_ENUM.SELF_CONNECTED:
+    //       console.log(`You are connected! Your username is ${msg.body.name}`);
+    //       break;
+    //     default:
+    //       console.log('Unknown message type.');
+    //   }
+    //   /* Add this draw to the pending buffer */
+
+    //   // this.ws.send('');
+    // };
   }
 
   sendMessage(message: string) {
@@ -30,37 +63,7 @@ export class WebSocketFinalService {
   }
 
   startConnection(){
-    this.ws = new WebSocket('wss://192.168.0.102:7777/ws');
 
-    this.ws.onopen = () => {
-      /* Join the "room" of canvas 1 */
-      // this.ws.send('Connected');
-    };
-
-    this.ws.onmessage = (message) => {
-      /* Request a new animation frame on first draw */
-      let msg = JSON.parse(message.data);
-      switch (msg.type) {
-        case MESSAGE_ENUM.CLIENT_MESSAGE:
-          console.log(`${msg.sender} says: ${msg.body}`);
-          this.serverMessage.next( msg.body );
-          break;
-        case MESSAGE_ENUM.CLIENT_CONNECTED:
-          console.log(`${msg.body.name} has joined the chat.`);
-          break;
-        case MESSAGE_ENUM.CLIENT_DISCONNECTED:
-          console.log(`${msg.body.name} has left the chat.`);
-          break;
-        case MESSAGE_ENUM.SELF_CONNECTED:
-          console.log(`You are connected! Your username is ${msg.body.name}`);
-          break;
-        default:
-          console.log('Unknown message type.');
-      }
-      /* Add this draw to the pending buffer */
-
-      // this.ws.send('');
-    };
   }
 
   closeConnection(){

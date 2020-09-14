@@ -11,9 +11,18 @@ declare var WSAudioAPI: any;
 export class UwsConnectionComponent implements OnInit {
   streamer = new WSAudioAPI.Streamer({
     server: {
-        host: window.location.hostname, //websockets server addres. In this example - localhost
-        port: 5000 //websockets server port
-  }});
+      host: window.location.hostname, //websockets server addres. In this example - localhost
+      port: 8080 //websockets server port
+    }
+  });
+
+  listener = new WSAudioAPI.Player({
+    server: {
+      host: window.location.hostname, //websockets server addres. In this example - localhost
+      port: 5000 //websockets server port
+    }
+  });
+
   message = null;
   serverMessages = null;
   _navigator: any;
@@ -28,7 +37,7 @@ export class UwsConnectionComponent implements OnInit {
     this._navigator = (navigator as any);
 
     console.log(this.streamer);
-    
+
   }
 
 
@@ -38,7 +47,7 @@ export class UwsConnectionComponent implements OnInit {
 
   connect() {
     // this.webSocket.startConnection();
-    // this._navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(this.handleSuccess).catch(this.didntGetStream);
+    this._navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(this.handleSuccess).catch(this.didntGetStream);
     this.streamer.start();
   }
 
@@ -46,6 +55,15 @@ export class UwsConnectionComponent implements OnInit {
     this._navigator.mediaDevices.getUserMedia({ audio: false, video: false });
     this.streamer.stop();
     // this.webSocket.closeConnection();
+  }
+ 
+  listen() {
+    // this.webSocket.startConnection();
+    this.listener.start();
+  }
+
+  stopListen() {
+    this.listener.stop();
   }
 
   handleSuccess(stream) {

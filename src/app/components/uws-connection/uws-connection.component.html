@@ -11,10 +11,17 @@
 
 
 <button mat-raised-button color='primary' (click)="connect()"> 
-    conectar
+    Stream
 </button>
 <button mat-raised-button color='warn' (click)="disconnect()"> 
     desconectar
+</button>
+<br>
+<button mat-raised-button color='primary' (click)="listen()"> 
+    Escuchar
+</button>
+<button mat-raised-button color='warn' (click)="stopListen()"> 
+    Dejar de escuchar
 </button>
 <!-- <input type="file" accept="audio/*" capture="microphone"> -->
 <audio id="player" controls></audio>
